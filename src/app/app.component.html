@@ -1,5 +1,17 @@
 <h1>Angular</h1>
 
-<courses>
-  
-</courses>
+<bootstrap-panel>
+    <div class="heading">Heading</div> <!--puts content in a div-->
+    <ng-container class="heading">Heading</ng-container><!--does not do stuff above-->
+    <div class="body">
+        <h2>body</h2>
+        <p>some content...</p>
+    </div>
+</bootstrap-panel>
+<br>
+<br>
+<br>
+
+<favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChanged($event)"></favorite>
+<br>
+<courses></courses>
