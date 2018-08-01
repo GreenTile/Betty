@@ -28,6 +28,7 @@ import { Component } from '@angular/core';
     <p>{{ course.price | currency:'AUD':true:'8.2-2'}}</p>
     <p>{{ course.subscribers }}</p>
     <p>{{ course.releaseDate | date:'shortDate' }}</p>
+    <p>{{ customPipe | summary:10 }}</p>
     `
 })
 export class CoursesComponent{
@@ -45,6 +46,7 @@ export class CoursesComponent{
         subscribers: 69060,
         releaseDate: new Date(1397,4,7)
     }
+    customPipe = "Lorem ipsum dolor sit amet, eum mundi urbanitas deterruisset in, noster iriure delicata ex quo, est nibh timeam in. Eros tamquam dolorum eam an, an debet viderer vel, eam ne brute decore libris. Mea ea atqui tempor volutpat. Ponderum dissentiunt nam ex, adipiscing quaerendum vim ei, sit enim liber euripidis ut. Libris meliore nominati mei at, cu duo nonumy nominavi, his modus populo gubergren ne. Eos ei clita voluptua.";
     getTitle(){
         return this.title;
     }
