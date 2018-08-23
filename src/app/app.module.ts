@@ -1,3 +1,6 @@
+import { ErrorHandler } from '@angular/core';
+import { appErrorHandler } from './common/app-err-handler';
+import { PostService } from './services/post.service';
 import { SummaryPipe } from './summary.pipe';
 import { CoursesComponent } from './courses.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +17,8 @@ import { InputFormatDirective } from './input-format.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
+import { PostsComponent } from './posts/posts.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -26,15 +31,20 @@ import { NewCourseFormComponent } from './new-course-form/new-course-form.compon
     InputFormatDirective,
     ContactFormComponent,
     SignupFormComponent,
-    NewCourseFormComponent
+    NewCourseFormComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [
-    CoursesService
+    // Http,
+    CoursesService,
+    PostService,
+    {provide: ErrorHandler, useClass: appErrorHandler}
   ],
   bootstrap: [AppComponent]
 })
