@@ -1,4 +1,3 @@
-import { AppErr } from './app-err';
-export class NotFoundError extends AppErr{
+import { AppError } from './app-error';
 
-}
+export class NotFoundError extends AppError {}
