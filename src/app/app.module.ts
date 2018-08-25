@@ -1,72 +1,52 @@
-import { GithubFollowersService } from './services/github-followers.service';
-import { AppErrorHandler } from './common/app-error-handler';
-import { PostService } from './services/post.service';
-import { HttpModule } from '@angular/http';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { SummaryPipe } from './summary.pipe';
-import { AuthorsService } from './authors.service';
-import { CoursesService } from './courses.service';
-import { CoursesComponent } from './courses.component';
+import { AuthHttp, AUTH_PROVIDERS, provideAuth, AuthConfig } from 'angular2-jwt/angular2-jwt';
+import { OrderService } from './services/order.service';
+import { MockBackend } from '@angular/http/testing';
+import { fakeBackendProvider } from './helpers/fake-backend';
+import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule, Http, BaseRequestOptions } from '@angular/http';
+import { RouterModule } from '@angular/router'; 
 
 import { AppComponent } from './app.component';
-import { CourseComponent } from './course/course.component';
-import { AuthorsComponent } from './authors/authors.component';
-import { FavoriteComponent } from './favorite/favorite.component';
-import { PanelComponent } from './panel/panel.component';
-import { InputFormatDirective } from './input-format.directive';
-import { TitleCasePipe } from './title-case.pipe';
-import { LikeComponent } from './like/like.component';
-import { ZippyComponent } from './zippy/zippy.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
-import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { PostsComponent } from './posts/posts.component';
-import { GithubFollowersComponent } from './github-followers/github-followers.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { GithubProfileComponent } from './github-profile/github-profile.component';
-import { NotFoundComponent } from './not-found/not-found.component'; 
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { AdminComponent } from './admin/admin.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { NoAccessComponent } from './no-access/no-access.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupFormComponent,
-    CourseComponent,
-    CoursesComponent,
-    AuthorsComponent,
-    SummaryPipe,
-    FavoriteComponent,
-    PanelComponent,
-    InputFormatDirective,
-    TitleCasePipe,
-    LikeComponent,
-    ZippyComponent,
-    ContactFormComponent,
-    NewCourseFormComponent,
-    ChangePasswordComponent,
-    PostsComponent,
-    GithubFollowersComponent,
-    NavbarComponent,
+    LoginComponent,
+    SignupComponent,
+    AdminComponent,
     HomeComponent,
-    GithubProfileComponent,
     NotFoundComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'admin', component: AdminComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'no-access', component: NoAccessComponent }
+    ])
   ],
   providers: [
-    PostService,
-    CoursesService,
-    AuthorsService,
-    GithubFollowersService,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+    OrderService,
+
+    AuthService,
+
+    // For creating a mock back-end. You don't need these in a real app. 
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions
   ],
   bootstrap: [AppComponent]
 })

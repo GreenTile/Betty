@@ -1,10 +1,10 @@
-import { HelloWorldPage } from './app.po';
+import { AuthDemoPage } from './app.po';
 
-describe('hello-world App', () => {
-  let page: HelloWorldPage;
+describe('auth-demo App', () => {
+  let page: AuthDemoPage;
 
   beforeEach(() => {
-    page = new HelloWorldPage();
+    page = new AuthDemoPage();
   });
 
   it('should display welcome message', done => {
