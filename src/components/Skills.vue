@@ -14,6 +14,8 @@
       </li>
     </ul>
   </div>
+  <p v-if="skills.length >= 2">u have more than one skill</p>
+  <p v-else>u have just one skill or none</p>
   </div>
 </template>
 
@@ -26,8 +28,8 @@ export default {
       btnState: true,
       skills: [
         { "skill": "vue-js"},
-        {"skill": "front end developer"},
-        { "skill": "vue-js"},
+        // {"skill": "front end developer"},
+        // { "skill": "vue-js"},
 
       ]
     }
