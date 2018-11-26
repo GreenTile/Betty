@@ -2,8 +2,15 @@
 <div class="hello">
   <div class="holder">
     <form @submit.prevent="addSkill">
-    <input type="text" placeholder="typr ur skill!" v-model="skill">
-    <input type="checkbox" id="checkbox" v-model="checked">
+    <input 
+      type="text"
+      placeholder="typr ur skill!"
+      v-model="skill"
+      v-validate="'min:5'"
+      name="skill">
+    <p class="alert" v-if="errors.has('skill')"> {{ errors.first('skill') }} </p>
+    <p class="alert" >{{ errorMsg }}</p>
+
     </form>
 
     <div class="holder">
@@ -26,6 +33,7 @@ export default {
   data() {
     return {
       name: 'MohammadBagher',
+      errorMsg: '',
       checked: false,
       skill: '',
       skills: [
@@ -37,9 +45,17 @@ export default {
   },
   methods: {
     addSkill(){
-      this.skills.push({ "skill": this.skill });
-      this.skill = '';
-      console.log('checked field status:'+ this.checked)
+
+      this.$validator.validateAll().then((result) => {
+        if(result){
+          this.skills.push({ "skill": this.skill });
+          this.skill = '';
+          this.errorMsg = '';
+        }else{
+          this.errorMsg = 'failed to add...';
+        }
+      });
+
     }
   }
 }
@@ -82,5 +98,11 @@ export default {
   .container {
     box-shadow: 0px 0px 40px lightgray;
   }
-
+  .alert {
+    background: #fdf2ce;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px;
+    margin-top: -20px;
+  }
 </style>
