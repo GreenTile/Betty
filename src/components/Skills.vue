@@ -1,12 +1,14 @@
 <template>
+
   <div class="hello">
     {{ name }}
-
     {{ btnState ? 'the buttun is disabled' : 'the bu'}}
+  
   <button @click="changeName"
           :disabled="btnState">
   Change Name
   </button>
+
   <div class="holder">
     <ul>
       <li v-for="(data,index) in skills" :key='index'>
@@ -14,10 +16,13 @@
       </li>
     </ul>
   </div>
+
   <p v-if="skills.length >= 2">u have more than one skill</p>
   <p v-else>u have just one skill or none</p>
 
   <div :class="alertObject"></div>
+
+  <div :style="{ backgroundColor: bg.color, width: bg.width, height: bg.height}"></div>
   </div>
 </template>
 
@@ -37,6 +42,11 @@ export default {
         alert: true,
         'another-class':true
       },
+      bg:{
+        color: "red",
+        width: "100px",
+        height: "200px",
+      }
     }
   }
 }
