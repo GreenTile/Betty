@@ -2,14 +2,17 @@
 <div class="hello">
   <div class="holder">
     <form @submit.prevent="addSkill">
+    <transition name="alert-in" enter-active-class="animated flipInX " leave-active-class="animated flipOutX">
+    <p class="alert" v-if="errors.has('skill')"> {{ errors.first('skill') }} </p>
+    <!-- <p class="alert" >{{ errorMsg }}</p> -->
+    </transition>
     <input 
       type="text"
       placeholder="typr ur skill!"
       v-model="skill"
       v-validate="'min:5'"
       name="skill">
-    <p class="alert" v-if="errors.has('skill')"> {{ errors.first('skill') }} </p>
-    <p class="alert" >{{ errorMsg }}</p>
+
 
     </form>
 
@@ -28,6 +31,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Skills',
   data() {
@@ -62,6 +66,8 @@ export default {
 </script>
 
 <style scoped>
+  @import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css";
+
   input {
     width: calc(100% - 40px);
     border: 0;
@@ -105,4 +111,26 @@ export default {
     padding: 5px;
     margin-top: -20px;
   }
+
+  /* .alert-in-enter-active {
+    animation: bounce-in .5s;
+  }
+
+  .alert-in-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+
+  @keyframes bounce-in {
+    0%{
+      transform: scale(0);
+    }
+    50%{
+      transform: scale(1.5);
+    }
+    100%{
+      transform: scale(1);
+    }
+  } */
+
+  
 </style>
