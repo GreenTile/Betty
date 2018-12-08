@@ -1,4 +1,4 @@
-# hello-vue
+# maxy
 
 ## Project setup
 ```
