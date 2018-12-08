@@ -8,7 +8,7 @@
     </transition>
     <input 
       type="text"
-      placeholder="typr ur skill!"
+      placeholder="type ur skill!"
       v-model="skill"
       v-validate="'min:5'"
       name="skill">
