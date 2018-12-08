@@ -1,55 +1,53 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">about</router-link>
-    </nav>
-
-    <router-view/>
+    <b-container class="bv-example-row">
+        <b-row>
+            <b-col>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis minima explicabo molestiae aspernatur commodi! Quas reiciendis facilis, laborum porro quod autem, praesentium reprehenderit adipisci aspernatur ullam quis. Quidem, aperiam exercitationem.</b-col>
+            <b-col>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae obcaecati iure quia facilis sit fugit eius voluptates accusamus nulla culpa?</b-col>
+            <b-col>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi obcaecati voluptatem accusamus nemo quae laudantium sit iste porro voluptatibus. Suscipit omnis temporibus voluptate ullam consectetur impedit amet labore dolorum quasi!</b-col>
+        </b-row>
+        <hr>
+        <b-row align-h="center">
+          <b-col cols="4">
+            <b-button size="lg" variant="success" @click="handleClick">
+              my button
+            </b-button>
+          </b-col>
+          <b-col cols="4">
+            <b-alert :show="showDismissibleAlert"
+                    dismissible
+                    variant="warning">
+              <p>This alert will dismiss after seconds...</p>
+            </b-alert>
+          </b-col>
+        </b-row>
+    </b-container>
   </div>
+  
+  
 </template>
 
 <script>
-import Skills from './components/Skills.vue'
 
 export default {
   name: 'app',
   components: {
-    Skills
+    
+  },
+  data(){
+    return{
+      showDismissibleAlert: false,
+
+    }
+  },
+  methods:{
+    handleClick() {
+      this.showDismissibleAlert = !this.showDismissibleAlert;
+    }
   }
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
-body {
-  background-color: #EEEEEE;
-  font-family: 'Montserrat', sans-serif;
-  display: grid;
-  grid-template-rows: auto;
-  justify-items: center;
-  /* align-items: center; */
-  padding-top: 50px;
-}
-body, html {
-  margin: 0;
-  height: 100%;
-}
-#app {
-    width: 50%;
-}
-nav {
-  padding: 20px 20px 20px 0;
-}
-
-nav a {
-  padding: 10px;
-  text-decoration: none;
-  background: #fff;
-  border-radius: 3px;
-  color: rgb(0, 110, 255);
-  font-weight: bold;
-  margin-right: 15px;
-}
 </style>
